@@ -16,7 +16,7 @@
 'use strict';
 
 var crypto = require('crypto');
-var lisk = require('lisk-js');
+var lisk = require('lisk-js').default;
 var accountFixtures = require('../../../fixtures/accounts');
 var randomUtil = require('../../../common/utils/random');
 var application = require('../../../common/application'); // eslint-disable-line no-unused-vars
