@@ -15,11 +15,11 @@
 'use strict';
 
 const randomstring = require('randomstring');
-const DBSandbox = require('../../../common/db_sandbox').DBSandbox;
-const transactionsFixtures = require('../../../fixtures').transactions;
-const transactionsSQL = require('../../../../db/sql').transactions;
-const seeder = require('../../../common/db_seed');
-const transactionTypes = require('../../../../helpers/transaction_types');
+const DBSandbox = require('../../../../common/db_sandbox').DBSandbox;
+const transactionsFixtures = require('../../../../fixtures/index').transactions;
+const transactionsSQL = require('../../../../../db/sql/index').transactions;
+const seeder = require('../../../../common/db_seed');
+const transactionTypes = require('../../../../../helpers/transaction_types');
 
 const numSeedRecords = 5;
 
@@ -253,7 +253,9 @@ describe('db', () => {
 
 		describe('list', () => {
 			it('should throw error if called without parameters', () => {
-				return expect(db.transactions.list()).to.be.rejectedWith("Cannot read property 'where' of undefined");
+				return expect(db.transactions.list()).to.be.rejectedWith(
+					"Cannot read property 'where' of undefined"
+				);
 			});
 
 			it('should use the correct SQL with correct parameters', function*() {
@@ -747,7 +749,9 @@ describe('db', () => {
 				});
 				transaction.senderPublicKey = 'ABFGH';
 
-				return expect(db.transactions.save(transaction)).to.be.rejectedWith('Invalid hex string');
+				return expect(db.transactions.save(transaction)).to.be.rejectedWith(
+					'Invalid hex string'
+				);
 			});
 
 			it('should execute all queries in one database transaction', done => {
