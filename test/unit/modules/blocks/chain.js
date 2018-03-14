@@ -445,10 +445,12 @@ describe('blocks/chain', () => {
 		beforeEach(() => {
 			transactions = [];
 			var account = randomUtil.account();
-			var transaction = lisk.transaction.createTransaction(
-				account.address,
-				randomUtil.number(100000000, 1000000000),
-				accountFixtures.genesis.password
+			var transaction = lisk.transaction.transfer(
+				{
+					amount: randomUtil.number(100000000, 1000000000),
+					passphrase: accountFixtures.genesis.password,
+					recipientId: account.address,
+				}
 			);
 			transaction.senderId = accountFixtures.genesis.address;
 			return transactions.push(transaction);
